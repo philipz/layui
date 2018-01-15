@@ -208,7 +208,7 @@ layui.define('jquery', function(exports){
     var tree = new Tree(options = options || {});
     var elem = $(options.elem);
     if(!elem[0]){
-      return hint.error('layui.tree 没有找到'+ options.elem +'元素');
+      return hint.error('layui.tree 沒有找到'+ options.elem +'元件');
     }
     tree.init(elem);
   });

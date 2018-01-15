@@ -383,7 +383,7 @@
     ,show: false //是否直接显示，如果设置true，则默认直接显示控件
     ,showBottom: true //是否显示底部栏
     ,btns: ['clear', 'now', 'confirm'] //右下角显示的按钮，会按照数组顺序排列
-    ,lang: 'cn' //语言，只支持cn/en，即中文和英文
+    ,lang: 'tw' //语言，只支持cn/en，即中文和英文
     ,theme: 'default' //主题
     ,position: null //控件定位方式定位, 默认absolute，支持：fixed/absolute/static
     ,calendar: false //是否开启公历重要节日，仅支持中文版
@@ -412,6 +412,20 @@
           ,now: '现在'
         }
       }
+      ,tw: {
+        weeks: ['日', '一', '二', '三', '四', '五', '六']
+        ,time: ['時', '分', '秒']
+        ,timeTips: '選擇時間'
+        ,startTime: '開始時間'
+        ,endTime: '結束時間'
+        ,dateTips: '回傳日期'
+        ,month: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二']
+        ,tools: {
+          confirm: '確定'
+          ,clear: '清空'
+          ,now: '現在'
+        }
+      }
       ,en: {
         weeks: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
         ,time: ['Hours', 'Minutes', 'Seconds']
@@ -427,7 +441,7 @@
         }
       }
     };
-    return text[options.lang] || text['cn'];
+    return text[options.lang] || text['tw'];
   };
   
   //初始准备
@@ -512,7 +526,15 @@
       ,'0-9-18': '国耻'
       ,'0-10-1': '国庆'
       ,'0-12-25': '圣诞'
-    } : {}, options.mark);
+    } : {
+      '0-1-1': '元旦'
+      ,'0-2-14': '情人'
+      ,'0-4-1': '愚人'
+      ,'0-4-4': '兒童'
+      ,'0-5-1': '勞動'
+      ,'0-10-10': '國慶'
+      ,'0-12-25': '耶誕'
+    }, options.mark);
     
     //获取限制内日期
     lay.each(['min', 'max'], function(i, item){
@@ -918,9 +940,9 @@
           initDate(dateTime, value)
         }
       } else {
-        that.hint('日期格式不合法<br>必须遵循下述格式：<br>'+ (
+        that.hint('日期格式不正確<br>必須遵循下述格式：<br>'+ (
           options.range ? (options.format + ' '+ options.range +' ' + options.format) : options.format
-        ) + '<br>已为你重置');
+        ) + '<br>已重新設置');
         error = true;
       }
     } else if(value && value.constructor === Date){ //如果值为日期对象时
@@ -1005,8 +1027,8 @@
     ,tds = lay(that.table[index]).find('td')
     ,elemYM = lay(that.elemHeader[index][2]).find('span');
     
-    if(dateTime.year < LIMIT_YEAR[0]) dateTime.year = LIMIT_YEAR[0], that.hint('最低只能支持到公元'+ LIMIT_YEAR[0] +'年');
-    if(dateTime.year > LIMIT_YEAR[1]) dateTime.year = LIMIT_YEAR[1], that.hint('最高只能支持到公元'+ LIMIT_YEAR[1] +'年');
+    if(dateTime.year < LIMIT_YEAR[0]) dateTime.year = LIMIT_YEAR[0], that.hint('最低只能支援到公元'+ LIMIT_YEAR[0] +'年');
+    if(dateTime.year > LIMIT_YEAR[1]) dateTime.year = LIMIT_YEAR[1], that.hint('最高只能支援到公元'+ LIMIT_YEAR[1] +'年');
     
     //记录初始值
     if(!that.firstDate){
@@ -1078,7 +1100,7 @@
           ];  
           that.list(options.type, 0).list(options.type, 1);
           //同步按钮可点状态
-          options.type === 'time' ? that.setBtnStatus('时间'
+          options.type === 'time' ? that.setBtnStatus('時間'
             ,lay.extend({}, that.systemDate(), that.startTime)
             ,lay.extend({}, that.systemDate(), that.endTime)
           ) : that.setBtnStatus(true);
@@ -1624,12 +1646,12 @@
       //确定
       ,confirm: function(){
         if(options.range){
-          if(!that.endDate) return that.hint('请先选择日期范围');
+          if(!that.endDate) return that.hint('請先選擇日期範圍');
           if(lay(btn).hasClass(DISABLED)) return that.hint(
-            options.type === 'time' ? TIPS_OUT.replace(/日期/g, '时间') : TIPS_OUT
+            options.type === 'time' ? TIPS_OUT.replace(/日期/g, '時間') : TIPS_OUT
           );
         } else {
-          if(lay(btn).hasClass(DISABLED)) return that.hint('不在有效日期或时间范围内');
+          if(lay(btn).hasClass(DISABLED)) return that.hint('不在有效日期或時間範圍內');
         }
         that.done();
         that.setValue(that.parse()).remove()

@@ -420,7 +420,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form'], function(exports){
         ,success: function(res){
           if(res[response.statusName] != response.statusCode){
             that.renderForm();
-            that.layMain.html('<div class="'+ NONE +'">'+ (res[response.msgName] || '返回的数据状态异常') +'</div>');
+            that.layMain.html('<div class="'+ NONE +'">'+ (res[response.msgName] || '回傳的數據資料異常') +'</div>');
           } else {
             that.renderData(res, curr, res[response.countName]), sort();
             options.time = (new Date().getTime() - that.startTime) + ' ms'; //耗时（接口请求+视图渲染）
@@ -429,7 +429,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form'], function(exports){
           typeof options.done === 'function' && options.done(res, curr, res[response.countName]);
         }
         ,error: function(e, m){
-          that.layMain.html('<div class="'+ NONE +'">数据接口请求异常</div>');
+          that.layMain.html('<div class="'+ NONE +'">資料介面呼叫異常</div>');
           that.renderForm();
           loadIndex && layer.close(loadIndex);
         }
@@ -718,7 +718,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form'], function(exports){
     var that = this
     ,options = that.config;
     if(options.loading && options.url){
-      return layer.msg('数据请求中', {
+      return layer.msg('資料傳輸中', {
         icon: 16
         ,offset: [
           that.elem.offset().top + that.elem.height()/2 - 35 - _WIN.scrollTop() + 'px'

@@ -20,9 +20,9 @@ layui.define(['layer-mobile', 'zepto'] , function(exports){
     icon: 2
     ,shift: 6
   }, fileType = {
-    file: '文件'
-    ,video: '视频'
-    ,audio: '音频'
+    file: '檔案'
+    ,video: '影片'
+    ,audio: '聲音'
   };
   
   layer.msg = function(content){
@@ -106,25 +106,25 @@ layui.define(['layer-mobile', 'zepto'] , function(exports){
     switch(type){
       case 'file': //一般文件
         if(ext && !RegExp('\\w\\.('+ ext +')$', 'i').test(escape(val))){
-          layer.msg('不支持该文件格式', msgConf);
+          layer.msg('不支援此檔案格式', msgConf);
           return input.value = '';
         }
       break;
       case 'video': //视频文件
         if(!RegExp('\\w\\.('+ (ext||'avi|mp4|wma|rmvb|rm|flash|3gp|flv') +')$', 'i').test(escape(val))){
-          layer.msg('不支持该视频格式', msgConf);
+          layer.msg('不支援此影片格式', msgConf);
           return input.value = '';
         }
       break;
       case 'audio': //音频文件
         if(!RegExp('\\w\\.('+ (ext||'mp3|wav|mid') +')$', 'i').test(escape(val))){
-          layer.msg('不支持该音频格式', msgConf);
+          layer.msg('不支援此聲音格式', msgConf);
           return input.value = '';
         }
       break;
       default: //图片文件
         if(!RegExp('\\w\\.('+ (ext||'jpg|png|gif|bmp|jpeg') +')$', 'i').test(escape(val))){
-          layer.msg('不支持该图片格式', msgConf);
+          layer.msg('不支援此圖片格式', msgConf);
           return input.value = '';
         }
       break;
@@ -138,7 +138,7 @@ layui.define(['layer-mobile', 'zepto'] , function(exports){
       try {
         res = iframe.contents().find('body').text();
       } catch(e) {
-        layer.msg('上传接口存在跨域', msgConf);
+        layer.msg('上傳網址存在跨網域問題', msgConf);
         clearInterval(timer);
       }
       if(res){
@@ -148,7 +148,7 @@ layui.define(['layer-mobile', 'zepto'] , function(exports){
           res = JSON.parse(res);
         } catch(e){
           res = {};
-          return layer.msg('请对上传接口返回JSON字符', msgConf);
+          return layer.msg('請對上傳網址回傳JSON字串', msgConf);
         }
         typeof options.success === 'function' && options.success(res, input);
       }

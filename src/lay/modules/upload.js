@@ -214,7 +214,7 @@ layui.define('layer' , function(exports){
           }
           ,error: function(){
             aborted++;
-            that.msg('请求上传接口出现异常');
+            that.msg('呼叫上傳程式出現錯誤');
             error(index);
             allDone();
           }
@@ -235,7 +235,7 @@ layui.define('layer' , function(exports){
         try {
           res = iframeBody.text();
         } catch(e) {
-          that.msg('获取上传后的响应信息出现异常');
+          that.msg('擷取上傳後的回應資訊出現錯誤');
           clearInterval(Class.timer);
           error();
         }
@@ -256,7 +256,7 @@ layui.define('layer' , function(exports){
           res = JSON.parse(res);
         } catch(e){
           res = {};
-          return that.msg('请对上传接口返回有效JSON');
+          return that.msg('請對上傳介面回傳有效的JSON');
         }
       }
       typeof options.done === 'function' && options.done(res, index || 0, function(files){
@@ -329,19 +329,19 @@ layui.define('layer' , function(exports){
     switch(options.accept){
       case 'file': //一般文件
         if(exts && !RegExp('\\w\\.('+ exts +')$', 'i').test(escape(value))){
-          that.msg('选择的文件中包含不支持的格式');
+          that.msg('選擇的檔案中包含不支援的格式');
           return elemFile.value = '';
         }
       break;
       case 'video': //视频文件
         if(!RegExp('\\w\\.('+ (exts || 'avi|mp4|wma|rmvb|rm|flash|3gp|flv') +')$', 'i').test(escape(value))){
-          that.msg('选择的视频中包含不支持的格式');
+          that.msg('選擇的影片中包含不支援的格式');
           return elemFile.value = '';
         }
       break;
       case 'audio': //音频文件
         if(!RegExp('\\w\\.('+ (exts || 'mp3|wav|mid') +')$', 'i').test(escape(value))){
-          that.msg('选择的音频中包含不支持的格式');
+          that.msg('選擇的聲音中包含不支援的格式');
           return elemFile.value = '';
         }
       break;
@@ -352,7 +352,7 @@ layui.define('layer' , function(exports){
           }
         });
         if(check){
-          that.msg('选择的图片中包含不支持的格式');
+          that.msg('選擇的圖片中包含不支援的格式');
           return elemFile.value = '';
         }
       break;
@@ -368,7 +368,7 @@ layui.define('layer' , function(exports){
       return length;
     }();
     if(options.number && that.fileLength > options.number){
-      return that.msg('同时最多只能上传的数量为：'+ options.number);
+      return that.msg('同時最多能上傳的數量為：'+ options.number);
     }
     
     //检验文件大小
@@ -386,7 +386,7 @@ layui.define('layer' , function(exports){
           
         }
       });
-      if(limitSize) return that.msg('文件不能超过'+ limitSize);
+      if(limitSize) return that.msg('檔案大小不能超過'+ limitSize);
     }
     send();
   };
@@ -409,7 +409,7 @@ layui.define('layer' , function(exports){
     ,setChooseText = function(files, filename){
       var elemFile = that.elemFile
       ,value = files.length > 1 
-        ? files.length + '个文件' 
+        ? files.length + '個檔案' 
       : ((files[0] || {}).name || (elemFile[0].value.match(/[^\/\\]+\..+/g)||[]) || '');
       
       if(elemFile.next().hasClass(ELEM_CHOOSE)){
