@@ -416,6 +416,7 @@ layui.define(['laytpl', 'laypage', 'layer', 'form'], function(exports){
         type: options.method || 'get'
         ,url: options.url
         ,data: $.extend(params, options.where)
+        ,headers : options.headers
         ,dataType: 'json'
         ,success: function(res){
           if(res[response.statusName] != response.statusCode){
