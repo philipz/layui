@@ -737,7 +737,7 @@ describe('laydate', function () {
 
       // 以下2个是测试和`options.closeStop`的配合
       it('element trigger show', function (done) {
-        createNode('<button id="test-trigger-show">显示</button>');
+        createNode('<button id="test-trigger-show">顯示</button>');
         $('#test-trigger-show').on('click', function () {
           laydate.render({
             elem: '#test-div',
@@ -751,7 +751,7 @@ describe('laydate', function () {
         }, 100);
       });
       it('element trigger show and options.closeStop', function (done) {
-        createNode('<button id="test-trigger-show">显示</button>');
+        createNode('<button id="test-trigger-show">顯示</button>');
         $('#test-trigger-show').on('click', function () {
           laydate.render({
             elem: '#test-div',
@@ -897,7 +897,7 @@ describe('laydate', function () {
     });
 
     describe('options.lang', function () {
-      it('default value is cn', function () {
+      it('default value is tw', function () {
         var result = laydate.render({
           show: true,
           elem: '#test-div'
@@ -906,9 +906,27 @@ describe('laydate', function () {
         var weeks = $('.layui-laydate-content').find('thead th').map(function () {
           return $(this).text();
         }).get();
+        expect(weeks).to.deep.equal(['日', '一', '二', '三', '四', '五', '六'], 'tw版本星期的標題');
+
+        expect($('.laydate-btns-confirm').text()).to.equal('確定', 'tw版本確定按鈕');
+        expect($('.laydate-btns-now').text()).to.equal('現在', 'tw版本目前按鈕');
+        expect($('.laydate-btns-clear').text()).to.equal('清空', 'tw版本清除按钮');
+        expect(result.config.lang).to.equal('tw');
+      });
+
+      it('cn', function () {
+        var result = laydate.render({
+          show: true,
+          lang: 'cn',
+          elem: '#test-div'
+        });
+
+        var weeks = $('.layui-laydate-content').find('thead th').map(function () {
+          return $(this).text();
+        }).get();
         expect(weeks).to.deep.equal(['日', '一', '二', '三', '四', '五', '六'], 'cn版本星期的标头');
 
-        expect($('.laydate-btns-confirm').text()).to.equal('确定', 'cn版本确定按钮');
+        expect($('.laydate-btns-confirm').text()).to.equal('確定', 'cn版本确定按钮');
         expect($('.laydate-btns-now').text()).to.equal('现在', 'cn版本当前按钮');
         expect($('.laydate-btns-clear').text()).to.equal('清空', 'cn版本清除按钮');
         expect(result.config.lang).to.equal('cn');
@@ -939,7 +957,7 @@ describe('laydate', function () {
           elem: '#test-div'
         });
 
-        expect($('.laydate-btns-confirm').text()).to.equal('确定', 'lang错误时默认为中文');
+        expect($('.laydate-btns-confirm').text()).to.equal('確定', 'lang錯誤時預設為繁中');
         expect(result.config.lang).to.equal('layui');
       });
 
