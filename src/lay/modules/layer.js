@@ -201,7 +201,7 @@ Class.pt.config = {
   shade: 0.3,
   fixed: true,
   move: doms[1],
-  title: '&#x4FE1;&#x606F;',
+  title: '&#x8A0A;&#x606F;',
   offset: 'auto',
   area: 'auto',
   closeBtn: 1,
