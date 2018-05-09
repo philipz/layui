@@ -79,7 +79,7 @@ layui.define('layer', function(exports){
       
       //下拉选择框
       select: function(){
-        var TIPS = '请选择', CLASS = 'layui-form-select', TITLE = 'layui-select-title'
+        var TIPS = '請選擇', CLASS = 'layui-form-select', TITLE = 'layui-select-title'
         ,NONE = 'layui-select-none', initValue = '', thatInput
         
         ,selects = elemForm.find('select'), hide = function(e, clear){
